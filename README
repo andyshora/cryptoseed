@@ -1,0 +1,5 @@
+CryptoSeed enables the creation of a random key for use in Cryptography, for use in Web Applications.
+
+As the Math.rand() function is not cryptographically secure in JavaScript, it's a lot safer to generate a seed based on the mouse movement from the user.
+
+The x and y co-ordinates from the users' mouse position is combined with a little maths to ensure that in the extremely rare event that 2 users should move the mouse across the exact same pixels, a different key would be generated each time.
