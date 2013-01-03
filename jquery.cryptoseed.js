@@ -11,7 +11,8 @@
         defaults = {
             format: "bytes",
 			length: 8,
-			output: '#key'
+			output: '#key',
+			byteValueCallback: null
         };
 
     // plugin constructor
@@ -43,10 +44,18 @@
 			var c = _self.arr[Math.floor(Math.random()*_self.arr.length)];
 			var c2 = _self.arr[Math.floor(Math.random()*_self.arr.length)];
 			var c3 = _self.arr[Math.floor(Math.random()*_self.arr.length)];
-			
+
 			_self.arr[n] = _self.alter(c, event.pageX, event.pageY);
 			_self.arr[n2] = _self.alter(c2, event.pageX + 13, event.pageY - 13);
 			_self.arr[n3] = _self.alter(c3, event.pageX + 101, event.pageY - 101);
+
+			// temp - should be seperated into callbacks
+			if ((typeof _self.options.byteValueCallback === 'function') || (typeof _self.options.byteValueCallback === 'object')) {
+				_self.options.byteValueCallback(_self.arr[n]);
+				_self.options.byteValueCallback(_self.arr[n2]);
+				_self.options.byteValueCallback(_self.arr[n3]);
+			}
+			
 			
 			_self.output.value = _self.arr.join(',');
 			
